@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/MainFragment">
+
     <fragment
         android:id="@+id/MainFragment"
         android:name="nl.hva.madlevel4task1.ui.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main"/>
     <fragment
         android:id="@+id/HistoryFragment"
         android:name="nl.hva.madlevel4task1.ui.HistoryFragment"
-        android:label="HistoryFragment" />
+        android:label="HistoryFragment"
+        tools:layout="@layout/fragment_history"/>
 </navigation>
