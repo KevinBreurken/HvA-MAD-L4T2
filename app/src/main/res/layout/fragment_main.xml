@@ -39,7 +39,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/scissors" />
+        app:srcCompat="@drawable/scissor" />
 
     <TextView
         android:id="@+id/textView"
@@ -113,7 +113,7 @@
         app:layout_constraintTop_toBottomOf="@+id/resultText" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/computerImageView"
         android:layout_width="123dp"
         android:layout_height="127dp"
         android:layout_marginTop="20dp"
@@ -125,7 +125,7 @@
         app:srcCompat="@drawable/rock" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/playerImageView"
         android:layout_width="123dp"
         android:layout_height="127dp"
         android:layout_marginStart="28dp"
@@ -142,7 +142,7 @@
         android:layout_marginStart="48dp"
         android:text="Computer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/computerImageView" />
 
     <TextView
         android:id="@+id/textView8"
@@ -152,5 +152,5 @@
         android:layout_marginEnd="60dp"
         android:text="You"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/playerImageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

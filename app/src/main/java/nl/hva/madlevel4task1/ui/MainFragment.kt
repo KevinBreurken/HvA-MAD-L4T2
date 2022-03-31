@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import nl.hva.madlevel4task1.GameActionResult
 import nl.hva.madlevel4task1.GameActionType
@@ -53,7 +55,18 @@ class MainFragment : Fragment() {
             gameActionResult.toString().lowercase()
                 .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 
+        updatePlayerActionDisplay(binding.computerImageView,computerAction)
+        updatePlayerActionDisplay(binding.playerImageView,userAction)
         //Update the computer graphic
     }
+
+    fun updatePlayerActionDisplay(imageView: ImageView,gameActionType: GameActionType){
+        val resourceId: Int = resources.getIdentifier(
+            gameActionType.toString().lowercase(), "drawable", requireContext().packageName
+        )
+        imageView.setImageDrawable(ResourcesCompat.getDrawable(resources,resourceId,null))
+
+    }
+
 
 }
