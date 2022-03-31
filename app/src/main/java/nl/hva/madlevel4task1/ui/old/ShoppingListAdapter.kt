@@ -16,8 +16,7 @@ class ShoppingListAdapter(private val products: List<Product>) :
         val binding = ItemProductBinding.bind(itemView)
 
         fun databind(product: Product) {
-            binding.tvName.text = product.productName
-            (product.productQuantity.toString() + "X").also { binding.tvQuantity.text = it };
+            binding.resultText.text = product.resultText;
         }
     }
 

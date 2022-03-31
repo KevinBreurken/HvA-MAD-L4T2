@@ -8,16 +8,25 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import nl.hva.madlevel4task1.GameActionResult
 import nl.hva.madlevel4task1.GameActionType
 import nl.hva.madlevel4task1.R
 import nl.hva.madlevel4task1.databinding.FragmentMainBinding
+import nl.hva.madlevel4task1.model.Product
+import nl.hva.madlevel4task1.repository.ProductRepository
 import java.util.*
 
 class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var productRepository: ProductRepository
+    private val mainScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +38,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        productRepository = ProductRepository(requireContext())
 
         binding.buttonRock.setOnClickListener { onGameActionPressed(GameActionType.ROCK) }
         binding.buttonPaper.setOnClickListener { onGameActionPressed(GameActionType.PAPER) }
@@ -47,6 +57,18 @@ class MainFragment : Fragment() {
             gameActionResult = GameActionResult.WIN
 
         updateGameUI(userAction,computerAction, gameActionResult);
+
+        mainScope.launch {
+            val product = Product(
+                gameActionResult.toString(),
+                1
+            )
+
+            withContext(Dispatchers.IO) {
+                productRepository.insertProduct(product)
+            }
+
+        }
     }
 
     fun updateGameUI(userAction: GameActionType,computerAction: GameActionType,gameActionResult: GameActionResult){

@@ -3,31 +3,85 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="72dp">
+    android:layout_height="172dp">
+
+    <ImageView
+        android:id="@+id/playerHistoryImageView"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toEndOf="@+id/versusText2"
+        app:layout_constraintTop_toTopOf="@+id/versusText2"
+        app:srcCompat="@drawable/rock" />
 
     <TextView
-        android:id="@+id/tvQuantity"
-        style="@style/TextAppearance.AppCompat.Subhead"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textColor="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="2X" />
+        android:layout_marginEnd="132dp"
+        android:text="You"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerHistoryImageView" />
 
     <TextView
-        android:id="@+id/tvName"
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:layout_width="0dp"
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="112dp"
+        android:text="Computer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/computerHistoryImageView" />
+
+    <ImageView
+        android:id="@+id/computerHistoryImageView"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="108dp"
+        app:layout_constraintEnd_toStartOf="@+id/versusText2"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateText"
+        app:srcCompat="@drawable/rock" />
+
+    <TextView
+        android:id="@+id/versusText2"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VS"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateText" />
+
+    <TextView
+        android:id="@+id/resultText"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvQuantity"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.133"
         tools:text="Carrots" />
+
+    <TextView
+        android:id="@+id/dateText"
+        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:layout_width="265dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultText"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Fri Aug 13 11:31:30 GMT+02:00 2021" />
 </androidx.constraintlayout.widget.ConstraintLayout>

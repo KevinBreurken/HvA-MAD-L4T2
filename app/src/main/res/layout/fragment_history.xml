@@ -6,11 +6,25 @@
     android:layout_height="match_parent"
     tools:context="nl.hva.madlevel4task1.ui.HistoryFragment">
 
-    <Button
-        android:id="@+id/button"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabDeleteAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="16dp"
+        android:backgroundTint="?android:attr/colorFocusedHighlight"
+        android:clickable="true"
+        android:contentDescription="@string/fab_delete_button"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        app:tint="@android:color/white" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/historyList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
