@@ -11,4 +11,8 @@
     <string name="add_product_err">Please fill in the fields</string>
     <string name="menu_item_play_game">Play</string>
     <string name="menu_item_history">History</string>
+
+    <string name="result_draw">Draw</string>
+    <string name="result_lose">Lose</string>
+    <string name="result_win">Win</string>
 </resources>

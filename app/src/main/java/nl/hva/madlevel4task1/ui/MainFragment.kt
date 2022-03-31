@@ -1,12 +1,18 @@
 package nl.hva.madlevel4task1.ui
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import nl.hva.madlevel4task1.GameActionResult
+import nl.hva.madlevel4task1.GameActionType
+import nl.hva.madlevel4task1.R
 import nl.hva.madlevel4task1.databinding.FragmentMainBinding
+import java.util.*
 
-class MainFragment: Fragment() {
+class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -17,6 +23,37 @@ class MainFragment: Fragment() {
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonRock.setOnClickListener { onGameActionPressed(GameActionType.ROCK) }
+        binding.buttonPaper.setOnClickListener { onGameActionPressed(GameActionType.PAPER) }
+        binding.buttonScissor.setOnClickListener { onGameActionPressed(GameActionType.SCISSOR) }
+    }
+
+    fun onGameActionPressed(userAction: GameActionType) {
+        val computerAction = GameActionType.values()[Random().nextInt(GameActionType.values().size)]
+        var gameActionResult = GameActionResult.LOSE;
+
+        if(userAction == computerAction)
+            gameActionResult = GameActionResult.DRAW
+        else if((userAction == GameActionType.PAPER && computerAction == GameActionType.ROCK) ||
+            (userAction == GameActionType.ROCK && computerAction == GameActionType.SCISSOR) ||
+            (userAction == GameActionType.SCISSOR && computerAction == GameActionType.PAPER))
+            gameActionResult = GameActionResult.WIN
+
+        updateGameUI(userAction,computerAction, gameActionResult);
+    }
+
+    fun updateGameUI(userAction: GameActionType,computerAction: GameActionType,gameActionResult: GameActionResult){
+        //Update the result text
+        binding.resultText.text =
+            gameActionResult.toString().lowercase()
+                .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+
+        //Update the computer graphic
     }
 
 }
