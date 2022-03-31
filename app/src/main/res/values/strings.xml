@@ -9,4 +9,6 @@
     <string name="fab_add_button">FAB add button</string>
     <string name="fab_delete_button">Fab Delete button</string>
     <string name="add_product_err">Please fill in the fields</string>
+    <string name="menu_item_play_game">Play</string>
+    <string name="menu_item_history">History</string>
 </resources>

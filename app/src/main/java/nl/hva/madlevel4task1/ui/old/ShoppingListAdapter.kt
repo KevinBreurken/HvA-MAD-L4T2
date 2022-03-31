@@ -1,4 +1,4 @@
-package nl.hva.madlevel4task1.ui
+package nl.hva.madlevel4task1.ui.old
 
 import android.view.LayoutInflater
 import android.view.View

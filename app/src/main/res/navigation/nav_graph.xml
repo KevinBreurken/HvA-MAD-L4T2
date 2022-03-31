@@ -3,10 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
-
+    app:startDestination="@id/MainFragment">
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="nl.hva.madlevel4task1.ui.ShoppingListFragment"
-        tools:layout="@layout/fragment_shopping_list"/>
+        android:id="@+id/MainFragment"
+        android:name="nl.hva.madlevel4task1.ui.MainFragment"
+        android:label="MainFragment" />
+    <fragment
+        android:id="@+id/HistoryFragment"
+        android:name="nl.hva.madlevel4task1.ui.HistoryFragment"
+        android:label="HistoryFragment" />
 </navigation>

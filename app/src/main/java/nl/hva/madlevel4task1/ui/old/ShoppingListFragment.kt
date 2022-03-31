@@ -1,4 +1,4 @@
-package nl.hva.madlevel4task1.ui
+package nl.hva.madlevel4task1.ui.old
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -172,8 +172,6 @@ class ShoppingListFragment : Fragment() {
                     }
                     getShoppingListFromDatabase()
                 }
-
-
             }
         }
         return ItemTouchHelper(callback)
