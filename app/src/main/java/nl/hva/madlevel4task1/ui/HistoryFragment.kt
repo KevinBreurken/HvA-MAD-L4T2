@@ -43,12 +43,9 @@ class HistoryFragment: Fragment() {
 
         initRv()
 
-//        binding.fabAddProduct.setOnClickListener {
-//            showAddProductDialog()
-//        }
-//        binding.fabDeleteAll.setOnClickListener {
-//            removeAllProducts()
-//        }
+        binding.fabDeleteAll.setOnClickListener{
+            removeAllProducts();
+        }
     }
 
     private fun initRv() {
@@ -64,6 +61,15 @@ class HistoryFragment: Fragment() {
                 )
             )
 
+        }
+    }
+
+    private fun removeAllProducts() {
+        mainScope.launch {
+            withContext(Dispatchers.IO) {
+                productRepository.deleteAllProducts()
+            }
+            getShoppingListFromDatabase()
         }
     }
 

@@ -3,6 +3,8 @@ package nl.hva.madlevel4task1.ui.old
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import nl.hva.madlevel4task1.R
 import nl.hva.madlevel4task1.databinding.ItemProductBinding
@@ -17,6 +19,7 @@ class ShoppingListAdapter(private val products: List<Product>) :
 
         fun databind(product: Product) {
             binding.resultText.text = product.resultText;
+            
         }
     }
 

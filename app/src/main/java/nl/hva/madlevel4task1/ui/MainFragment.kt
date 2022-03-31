@@ -49,14 +49,15 @@ class MainFragment : Fragment() {
         val computerAction = GameActionType.values()[Random().nextInt(GameActionType.values().size)]
         var gameActionResult = GameActionResult.LOSE;
 
-        if(userAction == computerAction)
+        if (userAction == computerAction)
             gameActionResult = GameActionResult.DRAW
-        else if((userAction == GameActionType.PAPER && computerAction == GameActionType.ROCK) ||
+        else if ((userAction == GameActionType.PAPER && computerAction == GameActionType.ROCK) ||
             (userAction == GameActionType.ROCK && computerAction == GameActionType.SCISSOR) ||
-            (userAction == GameActionType.SCISSOR && computerAction == GameActionType.PAPER))
+            (userAction == GameActionType.SCISSOR && computerAction == GameActionType.PAPER)
+        )
             gameActionResult = GameActionResult.WIN
 
-        updateGameUI(userAction,computerAction, gameActionResult);
+        updateGameUI(userAction, computerAction, gameActionResult);
 
         mainScope.launch {
             val product = Product(
@@ -71,22 +72,26 @@ class MainFragment : Fragment() {
         }
     }
 
-    fun updateGameUI(userAction: GameActionType,computerAction: GameActionType,gameActionResult: GameActionResult){
+    fun updateGameUI(
+        userAction: GameActionType,
+        computerAction: GameActionType,
+        gameActionResult: GameActionResult
+    ) {
         //Update the result text
         binding.resultText.text =
             gameActionResult.toString().lowercase()
                 .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 
-        updatePlayerActionDisplay(binding.computerImageView,computerAction)
-        updatePlayerActionDisplay(binding.playerImageView,userAction)
+        updatePlayerActionDisplay(binding.computerImageView, computerAction)
+        updatePlayerActionDisplay(binding.playerImageView, userAction)
         //Update the computer graphic
     }
 
-    fun updatePlayerActionDisplay(imageView: ImageView,gameActionType: GameActionType){
+    fun updatePlayerActionDisplay(imageView: ImageView, gameActionType: GameActionType) {
         val resourceId: Int = resources.getIdentifier(
             gameActionType.toString().lowercase(), "drawable", requireContext().packageName
         )
-        imageView.setImageDrawable(ResourcesCompat.getDrawable(resources,resourceId,null))
+        imageView.setImageDrawable(ResourcesCompat.getDrawable(resources, resourceId, null))
 
     }
 
