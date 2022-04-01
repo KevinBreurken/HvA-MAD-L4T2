@@ -8,4 +8,5 @@
     <string name="result_draw">Draw</string>
     <string name="result_lose">Lose</string>
     <string name="result_win">Win</string>
+    <string name="statisticsDisplay"> </string>
 </resources>

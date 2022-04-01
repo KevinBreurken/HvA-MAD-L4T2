@@ -26,6 +26,10 @@ class MainFragment : Fragment() {
     private lateinit var historyRepository: HistoryRepository
     private val mainScope = CoroutineScope(Dispatchers.Main)
 
+    var winAmount = 0
+    var lossAmount = 0
+    var drawAmount = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,6 +45,8 @@ class MainFragment : Fragment() {
         binding.buttonRock.setOnClickListener { onGameActionPressed(GameActionType.ROCK) }
         binding.buttonPaper.setOnClickListener { onGameActionPressed(GameActionType.PAPER) }
         binding.buttonScissor.setOnClickListener { onGameActionPressed(GameActionType.SCISSOR) }
+
+
     }
 
     fun onGameActionPressed(userAction: GameActionType) {
@@ -75,6 +81,16 @@ class MainFragment : Fragment() {
             gameActionResult.toString().lowercase()
                 .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 
+        //Update the statistics display
+        mainScope.launch {
+            withContext(Dispatchers.IO) {
+                winAmount = historyRepository.getResultCount(GameActionResult.WIN)
+                lossAmount = historyRepository.getResultCount(GameActionResult.LOSE)
+                drawAmount = historyRepository.getResultCount(GameActionResult.DRAW)
+            }
+            binding.statisticsText.text = "WIN: $winAmount LOSS: $lossAmount DRAW: $drawAmount ";
+        }
+
         //Update the display for both users
         updatePlayerActionDisplay(binding.computerImageView, computerAction)
         updatePlayerActionDisplay(binding.playerImageView, userAction)
@@ -86,6 +102,5 @@ class MainFragment : Fragment() {
         )
         imageView.setImageDrawable(ResourcesCompat.getDrawable(resources, resourceId, null))
     }
-
 
 }

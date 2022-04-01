@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import nl.hva.madlevel4task1.GameActionResult
 import nl.hva.madlevel4task1.model.History
 
 @Dao
@@ -21,4 +22,6 @@ interface HistoryDao {
     @Query("DELETE FROM historyTable")
     suspend fun deleteAllHistory()
 
+    @Query("SELECT COUNT(*) FROM historyTable WHERE result IS :companyId")
+    fun countResult(companyId: GameActionResult): Int
 }

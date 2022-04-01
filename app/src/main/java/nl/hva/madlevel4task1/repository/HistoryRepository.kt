@@ -1,6 +1,7 @@
 package nl.hva.madlevel4task1.repository
 
 import android.content.Context
+import nl.hva.madlevel4task1.GameActionResult
 import nl.hva.madlevel4task1.database.HistoryListRoomDatabase
 import nl.hva.madlevel4task1.dao.HistoryDao
 import nl.hva.madlevel4task1.model.History
@@ -16,6 +17,10 @@ class HistoryRepository(context: Context) {
 
     suspend fun getAllHistory(): List<History> {
         return historyDao.getAllHistory()
+    }
+
+    suspend fun getResultCount(result: GameActionResult): Int {
+        return historyDao.countResult(result)
     }
 
     suspend fun insertHistory(history: History) {
