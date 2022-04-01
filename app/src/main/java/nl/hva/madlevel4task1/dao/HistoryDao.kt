@@ -9,16 +9,16 @@ import nl.hva.madlevel4task1.model.History
 @Dao
 interface HistoryDao {
 
-    @Query("SELECT * FROM productTable")
-    suspend fun getAllProducts(): List<History>
+    @Query("SELECT * FROM historyTable")
+    suspend fun getAllHistory(): List<History>
 
     @Insert
-    suspend fun insertProduct(history: History)
+    suspend fun insertHistory(history: History)
 
     @Delete
-    suspend fun deleteProduct(history: History)
+    suspend fun deleteHistory(history: History)
 
-    @Query("DELETE FROM productTable")
-    suspend fun deleteAllProducts()
+    @Query("DELETE FROM historyTable")
+    suspend fun deleteAllHistory()
 
 }

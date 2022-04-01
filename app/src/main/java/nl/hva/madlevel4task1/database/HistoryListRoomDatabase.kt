@@ -10,10 +10,10 @@ import nl.hva.madlevel4task1.model.History
 @TypeConverters(Converters::class)
 abstract class HistoryListRoomDatabase : RoomDatabase() {
 
-    abstract fun productDao(): HistoryDao
+    abstract fun historyDao(): HistoryDao
 
     companion object {
-        private const val DATABASE_NAME = "SHOPPING_LIST_DATABASE"
+        private const val DATABASE_NAME = "HISTORY_LIST_DATABASE"
 
         @Volatile
         private var historyListRoomDatabaseInstance: HistoryListRoomDatabase? = null

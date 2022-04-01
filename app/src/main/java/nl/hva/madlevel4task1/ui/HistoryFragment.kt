@@ -66,7 +66,7 @@ class HistoryFragment: Fragment() {
     private fun removeAllProducts() {
         mainScope.launch {
             withContext(Dispatchers.IO) {
-                historyRepository.deleteAllProducts()
+                historyRepository.deleteAllHistory()
             }
             getShoppingListFromDatabase()
         }
@@ -75,7 +75,7 @@ class HistoryFragment: Fragment() {
     private fun getShoppingListFromDatabase() {
         mainScope.launch {
             val shoppingList = withContext(Dispatchers.IO) {
-                historyRepository.getAllProducts()
+                historyRepository.getAllHistory()
             }
             products.clear()
             products.addAll(shoppingList)

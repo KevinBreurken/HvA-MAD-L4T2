@@ -3,7 +3,9 @@ package nl.hva.madlevel4task1.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import nl.hva.madlevel4task1.GameActionType
 import nl.hva.madlevel4task1.R
 import nl.hva.madlevel4task1.databinding.ItemProductBinding
 import nl.hva.madlevel4task1.model.History
@@ -18,6 +20,19 @@ class HistoryListAdapter(private val histories: List<History>) :
         fun databind(history: History) {
             binding.resultText.text = history.result.toString();
             binding.dateText.text = history.createdDate.toString()
+
+            fun getID(type: GameActionType): Int {
+                if(type == GameActionType.ROCK)
+                    return R.drawable.rock
+                if(type == GameActionType.PAPER)
+                    return R.drawable.paper
+                if(type == GameActionType.SCISSOR)
+                    return R.drawable.scissor
+                return -1
+            }
+
+            binding.computerHistoryImageView.setImageResource(getID(history.computerAction))
+            binding.playerHistoryImageView.setImageResource(getID(history.playerAction))
         }
     }
 

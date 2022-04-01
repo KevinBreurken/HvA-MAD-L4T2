@@ -47,6 +47,7 @@ class MainFragment : Fragment() {
         val computerAction = GameActionType.values()[Random().nextInt(GameActionType.values().size)]
         var gameActionResult = GameActionResult.LOSE;
 
+        //Determine who has won the match
         if (userAction == computerAction)
             gameActionResult = GameActionResult.DRAW
         else if ((userAction == GameActionType.PAPER && computerAction == GameActionType.ROCK) ||
@@ -57,15 +58,10 @@ class MainFragment : Fragment() {
 
         updateGameUI(userAction, computerAction, gameActionResult);
 
+        //Add game to database.
         mainScope.launch {
-            val product = History(
-                gameActionResult,Date()
-            )
-
-            withContext(Dispatchers.IO) {
-                historyRepository.insertProduct(product)
-            }
-
+            val product = History(gameActionResult, computerAction, userAction, Date())
+            withContext(Dispatchers.IO) { historyRepository.insertHistory(product) }
         }
     }
 
@@ -79,9 +75,9 @@ class MainFragment : Fragment() {
             gameActionResult.toString().lowercase()
                 .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 
+        //Update the display for both users
         updatePlayerActionDisplay(binding.computerImageView, computerAction)
         updatePlayerActionDisplay(binding.playerImageView, userAction)
-        //Update the computer graphic
     }
 
     fun updatePlayerActionDisplay(imageView: ImageView, gameActionType: GameActionType) {
@@ -89,7 +85,6 @@ class MainFragment : Fragment() {
             gameActionType.toString().lowercase(), "drawable", requireContext().packageName
         )
         imageView.setImageDrawable(ResourcesCompat.getDrawable(resources, resourceId, null))
-
     }
 
 

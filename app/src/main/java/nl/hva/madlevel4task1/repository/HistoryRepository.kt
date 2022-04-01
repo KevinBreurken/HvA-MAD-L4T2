@@ -11,22 +11,22 @@ class HistoryRepository(context: Context) {
 
     init {
         val database = HistoryListRoomDatabase.getDatabase(context)
-        historyDao = database!!.productDao()
+        historyDao = database!!.historyDao()
     }
 
-    suspend fun getAllProducts(): List<History> {
-        return historyDao.getAllProducts()
+    suspend fun getAllHistory(): List<History> {
+        return historyDao.getAllHistory()
     }
 
-    suspend fun insertProduct(history: History) {
-        historyDao.insertProduct(history)
+    suspend fun insertHistory(history: History) {
+        historyDao.insertHistory(history)
     }
 
-    suspend fun deleteProduct(history: History) {
-        historyDao.deleteProduct(history)
+    suspend fun deleteHistory(history: History) {
+        historyDao.deleteHistory(history)
     }
 
-    suspend fun deleteAllProducts() {
-        historyDao.deleteAllProducts()
+    suspend fun deleteAllHistory() {
+        historyDao.deleteAllHistory()
     }
 }
