@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
@@ -14,10 +13,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import nl.hva.madlevel4task1.GameActionResult
 import nl.hva.madlevel4task1.GameActionType
-import nl.hva.madlevel4task1.R
 import nl.hva.madlevel4task1.databinding.FragmentMainBinding
-import nl.hva.madlevel4task1.model.Product
-import nl.hva.madlevel4task1.repository.ProductRepository
+import nl.hva.madlevel4task1.model.History
+import nl.hva.madlevel4task1.repository.HistoryRepository
 import java.util.*
 
 class MainFragment : Fragment() {
@@ -25,7 +23,7 @@ class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var productRepository: ProductRepository
+    private lateinit var historyRepository: HistoryRepository
     private val mainScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreateView(
@@ -38,7 +36,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        productRepository = ProductRepository(requireContext())
+        historyRepository = HistoryRepository(requireContext())
 
         binding.buttonRock.setOnClickListener { onGameActionPressed(GameActionType.ROCK) }
         binding.buttonPaper.setOnClickListener { onGameActionPressed(GameActionType.PAPER) }
@@ -60,12 +58,12 @@ class MainFragment : Fragment() {
         updateGameUI(userAction, computerAction, gameActionResult);
 
         mainScope.launch {
-            val product = Product(
+            val product = History(
                 gameActionResult,Date()
             )
 
             withContext(Dispatchers.IO) {
-                productRepository.insertProduct(product)
+                historyRepository.insertProduct(product)
             }
 
         }

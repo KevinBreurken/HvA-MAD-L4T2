@@ -2,13 +2,6 @@
     <string name="app_name">Mad Level 4 - Task 2</string>
     <string name="action_settings">Settings</string>
 
-    <string name="add_product_dialog_title">Add a product to your list!</string>
-    <string name="dialog_ok_btn">OK</string>
-    <string name="add_product">Add product</string>
-    <string name="amount">Amount</string>
-    <string name="fab_add_button">FAB add button</string>
-    <string name="fab_delete_button">Fab Delete button</string>
-    <string name="add_product_err">Please fill in the fields</string>
     <string name="menu_item_play_game">Play</string>
     <string name="menu_item_history">History</string>
 

@@ -13,20 +13,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import nl.hva.madlevel4task1.databinding.FragmentHistoryBinding
-import nl.hva.madlevel4task1.model.Product
-import nl.hva.madlevel4task1.repository.ProductRepository
-import nl.hva.madlevel4task1.ui.old.ShoppingListAdapter
+import nl.hva.madlevel4task1.model.History
+import nl.hva.madlevel4task1.repository.HistoryRepository
 
 class HistoryFragment: Fragment() {
 
     private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var productRepository: ProductRepository
+    private lateinit var historyRepository: HistoryRepository
     private val mainScope = CoroutineScope(Dispatchers.Main)
 
-    private val products = arrayListOf<Product>()
-    private val shoppingListAdapter = ShoppingListAdapter(products)
+    private val products = arrayListOf<History>()
+    private val shoppingListAdapter = HistoryListAdapter(products)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +37,7 @@ class HistoryFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        productRepository = ProductRepository(requireContext())
+        historyRepository = HistoryRepository(requireContext())
         getShoppingListFromDatabase()
 
         initRv()
@@ -67,7 +66,7 @@ class HistoryFragment: Fragment() {
     private fun removeAllProducts() {
         mainScope.launch {
             withContext(Dispatchers.IO) {
-                productRepository.deleteAllProducts()
+                historyRepository.deleteAllProducts()
             }
             getShoppingListFromDatabase()
         }
@@ -76,7 +75,7 @@ class HistoryFragment: Fragment() {
     private fun getShoppingListFromDatabase() {
         mainScope.launch {
             val shoppingList = withContext(Dispatchers.IO) {
-                productRepository.getAllProducts()
+                historyRepository.getAllProducts()
             }
             products.clear()
             products.addAll(shoppingList)

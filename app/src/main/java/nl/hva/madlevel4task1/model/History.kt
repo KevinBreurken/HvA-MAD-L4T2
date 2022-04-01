@@ -7,7 +7,7 @@ import nl.hva.madlevel4task1.GameActionResult
 import java.util.*
 
 @Entity(tableName = "productTable")
-data class Product(
+data class History(
 
     @ColumnInfo(name = "result")
     var result: GameActionResult,

@@ -14,7 +14,6 @@
         android:layout_margin="16dp"
         android:backgroundTint="?android:attr/colorFocusedHighlight"
         android:clickable="true"
-        android:contentDescription="@string/fab_delete_button"
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

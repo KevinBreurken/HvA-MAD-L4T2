@@ -4,19 +4,19 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import nl.hva.madlevel4task1.model.Product
+import nl.hva.madlevel4task1.model.History
 
 @Dao
-interface ProductDao {
+interface HistoryDao {
 
     @Query("SELECT * FROM productTable")
-    suspend fun getAllProducts(): List<Product>
+    suspend fun getAllProducts(): List<History>
 
     @Insert
-    suspend fun insertProduct(product: Product)
+    suspend fun insertProduct(history: History)
 
     @Delete
-    suspend fun deleteProduct(product: Product)
+    suspend fun deleteProduct(history: History)
 
     @Query("DELETE FROM productTable")
     suspend fun deleteAllProducts()
