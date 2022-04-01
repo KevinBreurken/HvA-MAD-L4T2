@@ -39,7 +39,11 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         productRepository = ProductRepository(requireContext())
-
+        mainScope.launch {
+            withContext(Dispatchers.IO) {
+                productRepository.deleteAllProducts()
+            }
+        }
         binding.buttonRock.setOnClickListener { onGameActionPressed(GameActionType.ROCK) }
         binding.buttonPaper.setOnClickListener { onGameActionPressed(GameActionType.PAPER) }
         binding.buttonScissor.setOnClickListener { onGameActionPressed(GameActionType.SCISSOR) }
@@ -61,8 +65,7 @@ class MainFragment : Fragment() {
 
         mainScope.launch {
             val product = Product(
-                gameActionResult.toString(),
-                1
+                gameActionResult.toString(),Date()
             )
 
             withContext(Dispatchers.IO) {

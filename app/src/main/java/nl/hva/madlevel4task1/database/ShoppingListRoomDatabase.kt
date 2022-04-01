@@ -1,13 +1,13 @@
 package nl.hva.madlevel4task1.database
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import nl.hva.madlevel4task1.Converters
 import nl.hva.madlevel4task1.dao.ProductDao
 import nl.hva.madlevel4task1.model.Product
 
 @Database(entities = [Product::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class ShoppingListRoomDatabase : RoomDatabase() {
 
     abstract fun productDao(): ProductDao

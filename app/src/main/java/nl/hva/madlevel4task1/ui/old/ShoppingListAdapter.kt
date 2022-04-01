@@ -19,7 +19,7 @@ class ShoppingListAdapter(private val products: List<Product>) :
 
         fun databind(product: Product) {
             binding.resultText.text = product.resultText;
-            
+            binding.dateText.text = product.createdDate.toString()
         }
     }
 
